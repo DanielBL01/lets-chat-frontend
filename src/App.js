@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Title from './Title';
+import Header from './Header';
 import Homepage from './Homepage';
 import Chat from './Chat';
 import './App.css';
@@ -33,14 +33,14 @@ class App extends Component {
   render() {
     let renderPage;
     if (this.state.page === 'homepage') {
-      renderPage = <Homepage page='homepage' name={this.state.name} setName={this.setName} setPage={this.setPage} />;
+      renderPage = <Homepage page='homepage' name={this.state.name} setName={this.setName} setPage={this.setPage} setRoom={this.setRoom} />;
     } else if (this.state.page === 'chat') {
-      renderPage = <Chat page='chat' name={this.state.name} setName={this.setName} setPage={this.setPage} />;
+      renderPage = <Chat page='chat' name={this.state.name} room={this.state.room} setName={this.setName} setPage={this.setPage} setRoom={this.setRoom} />;
     }
 
     return (
       <div className='App'>
-        <Title />
+        <Header />
         {renderPage}
       </div>
     )

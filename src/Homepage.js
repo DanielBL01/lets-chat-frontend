@@ -21,8 +21,9 @@ class Homepage extends Component {
 
         if (this.props.name.length > 0) {
             try {
-                var room = await axios.get('/findNewRoom');
-                this.props.setRoom(room);
+                await axios.get('/findNewRoom').then(res => {
+                    this.props.setRoom(res.data)
+                });
             } catch(err) {
                 console.log(err);
             }

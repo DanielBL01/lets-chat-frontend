@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-class Title extends Component {
+class Header extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            title: 'Title Not Defined'
-        }
+            header: 'Header Not Defined'
+        };
     };
 
     async componentDidMount() {
-        await axios.get('/title').then(res => {
+        await axios.get('/header').then(res => {
             this.setState({
-                title: res.data
+                header: res.data
             });
         });
     };
@@ -20,13 +20,13 @@ class Title extends Component {
     render() {
         return (
             <div>
-                {this.state.title}
+                {this.state.header}
             </div>
         );
     }
 }
 
-export default Title;
+export default Header;
 
 /*
 
