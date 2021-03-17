@@ -9,8 +9,8 @@ class Title extends Component {
         }
     };
 
-    componentDidMount() {
-        axios.get('/title').then(res => {
+    async componentDidMount() {
+        await axios.get('/title').then(res => {
             this.setState({
                 title: res.data
             });
@@ -27,3 +27,10 @@ class Title extends Component {
 }
 
 export default Title;
+
+/*
+
+This is just for testing the REST API for React and Node JS
+We will also test the async function for componentDidMount and it seems to have worked
+
+*/
