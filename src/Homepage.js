@@ -9,13 +9,19 @@ class Homepage extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    // Set the new name
+    /**
+     * handleChange is called for onChange in the input tag. onChange reacts to a change in the input field box and NOT when the form is submitted.
+     * This means that the var name is constantly changing i.e name = d -> da -> dan -> dani -> danie -> daniel (FINAL)
+     */
     handleChange(event) {
         var name = event.target.value;
         this.props.setName(name);
     }
 
-    // Find a new room
+    /**
+     * handleSubmit is called for onSubmit in the form tag. This means that when the form is submitted, this function is called which finds 
+     * a new room for the user and changes the page to homepage -> chat
+     */
     async handleSubmit(event) {
         event.preventDefault();
 

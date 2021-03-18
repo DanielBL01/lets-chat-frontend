@@ -5,24 +5,50 @@ class Chat extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            message: '',
             messages: []
         };
+
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.connectSocket = this.connectSocket.bind(this);
     }
 
     componentDidMount() {
-        this.connectSocket();
+        this.connectSocket('single_test_room');
     }
 
-    connectSocket() {
-        socket.emit('join', 'single_test_room');
+    componentDidUpdate(prevProps) {
+        if (prevProps.room !== this.props.room) {
+            this.connectSocket('single_test_room');
+        }
+    }
 
-        var temp = this.state.messages;
-        temp.push(this.props.name);
-        this.setState({
-            messages: temp
+    connectSocket(room) {
+        socket.emit('join', room);
+        socket.on('messages', msg => {
+            var temp = this.state.messages;
+            temp.push(msg);
+            this.setState({
+                messages: temp
+            });
         });
+    }
 
-        console.log(this.state.messages);
+    handleChange(event) {
+        var msg = event.target.value;
+        this.setState({
+            message: msg
+        });
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
+        socket.emit('messages', this.state.message);
+
+        this.setState({
+            message: ''
+        });
     }
 
     render() {
@@ -36,6 +62,13 @@ class Chat extends Component {
                 <ul>    
                     {displayMessages}
                 </ul>
+                <form onSubmit={this.handleSubmit}>
+                    <label>
+                        Enter something to the chat...
+                        <input type='text' name='message' placeholder="Aa" value={this.state.message} onChange={this.handleChange} />
+                    </label>
+                    <input type='submit' value='Send' />
+                </form>
             </div>
         )
     }
