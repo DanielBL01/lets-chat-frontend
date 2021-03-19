@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import socket from './Socket';
+import Homepage from './Homepage';
 
 class Chat extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            status: 'matching',
             message: '',
             messages: []
         };
@@ -15,22 +17,29 @@ class Chat extends Component {
     }
 
     componentDidMount() {
-        this.connectSocket('single_test_room');
+        this.connectSocket(this.props.room);
     }
 
     componentDidUpdate(prevProps) {
         if (prevProps.room !== this.props.room) {
-            this.connectSocket('single_test_room');
+            this.connectSocket(this.props.room);
         }
     }
 
-    connectSocket(room) {
-        socket.emit('join', room);
+    connectSocket(room_id) {
+        socket.emit('join', room_id);
+
         socket.on('messages', msg => {
             var temp = this.state.messages;
             temp.push(msg);
             this.setState({
                 messages: temp
+            });
+        });
+
+        socket.on('status', status => {
+            this.setState({
+                status: status
             });
         });
     }
@@ -52,16 +61,25 @@ class Chat extends Component {
     }
 
     render() {
-        var displayMessages = this.state.messages.map(message => 
-            <li>{message}</li>
-        );
+        let renderPage;
 
-        return (
-            <div>
+        if (this.state.status === 'matching') {
+            renderPage = <div>
+                <p>Searching for a Partner...</p>
+            </div>
+        } 
+        
+        else if (this.state.status === 'chatting') {
+            var displayMessages = this.state.messages.map(message => 
+                <li>{message}</li>
+            );
+
+            renderPage = <div>
                 <h1>Welcome, and thanks for joining the Chat room!</h1>
                 <ul>    
                     {displayMessages}
                 </ul>
+
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         Enter something to the chat...
@@ -69,6 +87,19 @@ class Chat extends Component {
                     </label>
                     <input type='submit' value='Send' />
                 </form>
+            </div>
+        } 
+        
+        else if (this.state.status === 'leave') {
+            renderPage = <div>
+                <p>Your Chat has Ended!</p>
+                <Homepage />
+            </div>
+        }
+
+        return (
+            <div>
+                {renderPage}
             </div>
         )
     }

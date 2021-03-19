@@ -9,7 +9,7 @@ class App extends Component {
     super(props);
     this.state = {
       page: 'homepage',
-      room: {},
+      room: 0,
       name: ''
     };
 
@@ -27,11 +27,12 @@ class App extends Component {
   }
 
   setRoom(room) {
-    this.setState({room: room})
+    this.setState({room: room});
   }
 
   render() {
     let renderPage;
+
     if (this.state.page === 'homepage') {
       renderPage = <Homepage page='homepage' name={this.state.name} setName={this.setName} setPage={this.setPage} setRoom={this.setRoom} />;
     } else if (this.state.page === 'chat') {
@@ -54,4 +55,5 @@ export default App;
 There are two main pages for this application. A page where a user enters a username and chooses a language of preference
 and a chat room page where two users chat using different languages
 
+This App component shall handle whether we render the homepage or chat page, store the room, and the username and language
 */

@@ -21,13 +21,16 @@ class Homepage extends Component {
     /**
      * handleSubmit is called for onSubmit in the form tag. This means that when the form is submitted, this function is called which finds 
      * a new room for the user and changes the page to homepage -> chat
+     * 
+     * We use the async and await keywords since we're makinga request to an API
      */
     async handleSubmit(event) {
         event.preventDefault();
 
         if (this.props.name.length > 0) {
             try {
-                await axios.get('/findNewRoom').then(res => {
+                await axios.get('/findOrCreateRoom').then(res => {
+                    console.log(res.data);
                     this.props.setRoom(res.data)
                 });
             } catch(err) {
@@ -59,6 +62,7 @@ export default Homepage;
 
 /*
 
-The homepage displays a form which a user must enter a username and a language of preference. 
+The Homepage component will display a form to save the username and language and on submit, set the page from homepage to chat so that the App component can render 
+the Chat component
 
 */
