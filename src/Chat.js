@@ -7,6 +7,8 @@ class Chat extends Component {
         super(props);
         this.state = {
             status: 'matching',
+            partnerName: '',
+            partnerLanguage: '',
             message: '',
             messages: []
         };
@@ -41,6 +43,22 @@ class Chat extends Component {
             this.setState({
                 status: status
             });
+
+            if (this.state.status === 'chatting') {
+                socket.emit('partner', {
+                    name: this.props.name,
+                    language: this.props.language
+                });
+            }
+        });
+
+        socket.on('newPartner', newPartner => {
+            if (newPartner.id !== socket.id) {
+                this.setState({
+                    partnerName: newPartner.name,
+                    partnerLanguage: newPartner.language
+                });
+            }
         });
     }
 
@@ -76,6 +94,7 @@ class Chat extends Component {
 
             renderPage = <div>
                 <h1>Welcome, and thanks for joining the Chat room!</h1>
+                <h2>You are talking to {this.state.partnerName} who speaks {this.state.partnerLanguage}</h2>
                 <ul>    
                     {displayMessages}
                 </ul>

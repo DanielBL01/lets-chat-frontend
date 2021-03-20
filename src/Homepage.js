@@ -14,8 +14,11 @@ class Homepage extends Component {
      * This means that the var name is constantly changing i.e name = d -> da -> dan -> dani -> danie -> daniel (FINAL)
      */
     handleChange(event) {
-        var name = event.target.value;
-        this.props.setName(name);
+        if (event.target.name === 'username') {
+            this.props.setName(event.target.value);
+        } else if (event.target.name === 'language') {
+            this.props.setLanguage(event.target.value);
+        }    
     }
 
     /**
@@ -49,7 +52,14 @@ class Homepage extends Component {
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         What is your Name?
-                        <input type='text' name='username' placeholder="Enter your username" value={this.props.name} onChange={this.handleChange} />
+                        <input type='text' name='username' placeholder='Enter your username' value={this.props.name} onChange={this.handleChange} />
+                    </label>
+                    <label>
+                        What language do you speak?
+                        <select name='language' value={this.props.language} onChange={this.handleChange}>
+                            <option value="english">English</option>
+                            <option value="french">French</option>
+                        </select>
                     </label>
                     <input type='submit' value='Find a Chat Room' />
                 </form>

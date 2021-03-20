@@ -10,16 +10,14 @@ class App extends Component {
     this.state = {
       page: 'homepage',
       room: 0,
-      name: ''
+      name: '',
+      language: 'english'
     };
 
-    this.setName = this.setName.bind(this);
     this.setPage = this.setPage.bind(this);
     this.setRoom = this.setRoom.bind(this);
-  }
-
-  setName(name) {
-    this.setState({name: name})
+    this.setName = this.setName.bind(this);
+    this.setLanguage = this.setLanguage.bind(this);
   }
 
   setPage(page) {
@@ -30,13 +28,22 @@ class App extends Component {
     this.setState({room: room});
   }
 
+  setName(name) {
+    this.setState({name: name})
+  }
+
+  setLanguage(language) {
+    this.setState({language: language})
+  }
+
   render() {
     let renderPage;
 
     if (this.state.page === 'homepage') {
-      renderPage = <Homepage page='homepage' name={this.state.name} setName={this.setName} setPage={this.setPage} setRoom={this.setRoom} />;
+      renderPage = <Homepage page='homepage' name={this.state.name} language={this.state.language} setName={this.setName} setPage={this.setPage} setRoom={this.setRoom} setLanguage={this.setLanguage} />;
     } else if (this.state.page === 'chat') {
-      renderPage = <Chat page='chat' name={this.state.name} room={this.state.room} setName={this.setName} setPage={this.setPage} setRoom={this.setRoom} />;
+      console.log(this.state);
+      renderPage = <Chat page='chat' name={this.state.name} language={this.state.language} room={this.state.room} setName={this.setName} setPage={this.setPage} setRoom={this.setRoom} />;
     }
 
     return (
