@@ -13,9 +13,10 @@ class Chat extends Component {
             messages: []
         };
 
+        this.connectSocket = this.connectSocket.bind(this);
+        this.handleClick = this.handleClick.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.connectSocket = this.connectSocket.bind(this);
     }
 
     componentDidMount() {
@@ -62,6 +63,24 @@ class Chat extends Component {
         });
     }
 
+    handleClick(event) {
+        event.preventDefault();
+        socket.emit('leave');
+
+        this.setState({
+            status: 'leave',
+            partnerName: '',
+            partnerLanguage: '',
+            message: '',
+            messages: []
+        });
+
+        this.props.setPage('homepage');
+        this.props.setRoom(0);
+        this.props.setName('');
+        this.props.setLanguage('english');
+    }
+
     handleChange(event) {
         var msg = event.target.value;
         this.setState({
@@ -95,6 +114,8 @@ class Chat extends Component {
             renderPage = <div>
                 <h1>Welcome, and thanks for joining the Chat room!</h1>
                 <h2>You are talking to {this.state.partnerName} who speaks {this.state.partnerLanguage}</h2>
+                <h2>You speak {this.props.language}</h2>
+                <button onClick={this.handleClick}>Leave</button>
                 <ul>    
                     {displayMessages}
                 </ul>

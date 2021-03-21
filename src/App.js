@@ -43,7 +43,7 @@ class App extends Component {
       renderPage = <Homepage page='homepage' name={this.state.name} language={this.state.language} setName={this.setName} setPage={this.setPage} setRoom={this.setRoom} setLanguage={this.setLanguage} />;
     } else if (this.state.page === 'chat') {
       console.log(this.state);
-      renderPage = <Chat page='chat' name={this.state.name} language={this.state.language} room={this.state.room} setName={this.setName} setPage={this.setPage} setRoom={this.setRoom} />;
+      renderPage = <Chat page='chat' name={this.state.name} language={this.state.language} room={this.state.room} setName={this.setName} setPage={this.setPage} setRoom={this.setRoom} setLanguage={this.setLanguage} />;
     }
 
     return (
