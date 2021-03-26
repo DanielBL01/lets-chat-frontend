@@ -57,8 +57,8 @@ class Homepage extends Component {
                     <label>
                         What language do you speak?
                         <select name='language' value={this.props.language} onChange={this.handleChange}>
-                            <option value="english">English</option>
-                            <option value="french">French</option>
+                            <option value="en">English</option>
+                            <option value="fr">French</option>
                         </select>
                     </label>
                     <input type='submit' value='Find a Chat Room' />

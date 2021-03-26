@@ -11,7 +11,7 @@ class App extends Component {
       page: 'homepage',
       room: 0,
       name: '',
-      language: 'english'
+      language: 'en'
     };
 
     this.setPage = this.setPage.bind(this);

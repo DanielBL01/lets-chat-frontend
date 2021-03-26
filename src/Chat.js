@@ -78,7 +78,7 @@ class Chat extends Component {
         this.props.setPage('homepage');
         this.props.setRoom(0);
         this.props.setName('');
-        this.props.setLanguage('english');
+        this.props.setLanguage('en');
     }
 
     handleChange(event) {
@@ -90,7 +90,10 @@ class Chat extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        socket.emit('messages', this.state.message);
+        socket.emit('messages', {
+            message: this.state.message,
+            language: this.state.partnerLanguage
+        });
 
         this.setState({
             message: ''
