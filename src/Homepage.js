@@ -4,11 +4,26 @@ import axios from 'axios';
 class Homepage extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            languages: []
+        }
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    async componentDidMount() {
+        try {
+            await axios.get('/listAllLanguages').then(res => {
+                this.setState({
+                    languages: res.data
+                });
+            });
+        } catch(err) {
+            console.log(err);
+        }
+    };
+    
     /**
      * handleChange is called for onChange in the input tag. onChange reacts to a change in the input field box and NOT when the form is submitted.
      * This means that the var name is constantly changing i.e name = d -> da -> dan -> dani -> danie -> daniel (FINAL)
@@ -57,8 +72,9 @@ class Homepage extends Component {
                     <label>
                         What language do you speak?
                         <select name='language' value={this.props.language} onChange={this.handleChange}>
-                            <option value="en">English</option>
-                            <option value="fr">French</option>
+                            {this.state.languages.map((language, i) => {
+                                return <option value={language.code}>{language.name}</option>
+                            })}
                         </select>
                     </label>
                     <input type='submit' value='Find a Chat Room' />
