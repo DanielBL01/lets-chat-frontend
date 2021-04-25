@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import Header from './Header';
-import Homepage from './Homepage';
-import Chat from './Chat';
-import './App.css';
+import Header from './components/Header';
+import Homepage from './components/Homepage';
+import Chat from './components/Chat';
 
 class App extends Component {
   constructor(props) {
@@ -47,9 +46,13 @@ class App extends Component {
     }
 
     return (
-      <div className='App'>
-        <Header />
-        {renderPage}
+      <div className='container'>
+        <div className='card'>
+          <Header />
+        </div>
+        <div className='card'>
+          {renderPage}          
+        </div>
       </div>
     )
   }

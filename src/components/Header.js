@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import style from './Header.module.css';
 
 class Header extends Component {
     constructor(props) {
@@ -19,7 +20,7 @@ class Header extends Component {
 
     render() {
         return (
-            <div>
+            <div className={style.header}>
                 {this.state.header}
             </div>
         );

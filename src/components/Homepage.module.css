@@ -1,0 +1,11 @@
+.homepage {
+    text-align: center;
+    font-size: large;
+}
+
+input[type=text], input[type=submit], select {
+    display: inline-block;
+    position: relative;
+    margin-top: 30px;
+    width: 50%;
+}

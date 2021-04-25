@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import style from './Homepage.module.css';
 
 class Homepage extends Component {
     constructor(props) {
@@ -63,20 +64,15 @@ class Homepage extends Component {
 
     render() {
         return (
-            <div>Homepage
+            <div className={style.homepage}>
+                Seeminglessly chat with people around the world
                 <form onSubmit={this.handleSubmit}>
-                    <label>
-                        What is your Name?
-                        <input type='text' name='username' placeholder='Enter your username' value={this.props.name} onChange={this.handleChange} />
-                    </label>
-                    <label>
-                        What language do you speak?
-                        <select name='language' value={this.props.language} onChange={this.handleChange}>
-                            {this.state.languages.map((language, i) => {
-                                return <option value={language.code}>{language.name}</option>
-                            })}
-                        </select>
-                    </label>
+                    <select name='language' value={this.props.language} onChange={this.handleChange}>
+                        {this.state.languages.map((language, i) => {
+                            return <option value={language.code}>{language.name}</option>
+                        })}
+                    </select>
+                    <input type='text' name='username' placeholder='Enter your username...' value={this.props.name} onChange={this.handleChange} />
                     <input type='submit' value='Find a Chat Room' />
                 </form>
             </div>

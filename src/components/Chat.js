@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import socket from './Socket';
 import Homepage from './Homepage';
+import style from './Chat.module.css';
 
 class Chat extends Component {
     constructor(props) {
@@ -104,8 +105,9 @@ class Chat extends Component {
         let renderPage;
 
         if (this.state.status === 'matching') {
-            renderPage = <div>
-                <p>Searching for a Partner...</p>
+            renderPage = <div className={style.searching}>
+                <div>Searching for a Partner</div>
+                <div className={style.dot_flashing} />
             </div>
         } 
         

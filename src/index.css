@@ -1,0 +1,36 @@
+/* Define generic CSS for entire web application */
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+body {
+    font-family: 'Raleway', sans-serif;
+}
+
+/* Standard 1024px container to use for all pages */
+.container {
+    /* Absolute is positioned relative to the nearest positioned ancestor. This means that that it needs a reference to position itself to. Here we use the 
+    coordinate elements top, bottom, left and right to cover the entire screen. From there, we set a max width to finish the container definition. */
+	position: absolute;
+    max-width: 1024px;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+    border-style: solid;
+    border-color: black;
+}
+
+.card {
+    /* The parent of the card in the container which is positioned absolute. From the original position of the container, we can then define relative positions
+    using properties such as padding, margins etc */
+    position: relative;
+    border-radius: 5px;
+    /* padding: top, left/right and bottom */
+    padding: 10px 20px 30px;
+    margin-top: 50px;
+    margin-left: 50px;
+    margin-right: 50px;
+    border-style: solid;
+    border-color: black;
+}
