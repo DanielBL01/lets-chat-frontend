@@ -3,7 +3,7 @@
     font-size: large;
 }
 
-input[type=text], input[type=submit], select {
+.homepage_form {
     display: inline-block;
     position: relative;
     margin-top: 30px;

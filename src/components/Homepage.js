@@ -14,6 +14,7 @@ class Homepage extends Component {
     }
 
     async componentDidMount() {
+        document.title = 'Lets Chat - Homepage'
         try {
             await axios.get('/listAllLanguages').then(res => {
                 this.setState({
@@ -67,13 +68,13 @@ class Homepage extends Component {
             <div className={style.homepage}>
                 Seeminglessly chat with people around the world
                 <form onSubmit={this.handleSubmit}>
-                    <select name='language' value={this.props.language} onChange={this.handleChange}>
+                    <select className={style.homepage_form} name='language' value={this.props.language} onChange={this.handleChange}>
                         {this.state.languages.map((language, i) => {
                             return <option value={language.code}>{language.name}</option>
                         })}
                     </select>
-                    <input type='text' name='username' placeholder='Enter your username...' value={this.props.name} onChange={this.handleChange} />
-                    <input type='submit' value='Find a Chat Room' />
+                    <input className={style.homepage_form} type='text' name='username' placeholder='Enter your username...' value={this.props.name} onChange={this.handleChange} />
+                    <input className={style.homepage_form} type='submit' value='Find a Chat Room' />
                 </form>
             </div>
         )

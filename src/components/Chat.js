@@ -21,6 +21,7 @@ class Chat extends Component {
     }
 
     componentDidMount() {
+        document.title = 'Lets Chat - Chat Room'
         this.connectSocket(this.props.room);
     }
 
@@ -120,18 +121,17 @@ class Chat extends Component {
                 <h1>Welcome, and thanks for joining the Chat room!</h1>
                 <h2>You are talking to {this.state.partnerName} who speaks {this.state.partnerLanguage}</h2>
                 <h2>You speak {this.props.language}</h2>
-                <button onClick={this.handleClick}>Leave</button>
-                <ul>    
-                    {displayMessages}
-                </ul>
+                <div className='messages'>
+                    <ul>    
+                        {displayMessages}
+                    </ul>
+                </div>
 
                 <form onSubmit={this.handleSubmit}>
-                    <label>
-                        Enter something to the chat...
-                        <input type='text' name='message' placeholder="Aa" value={this.state.message} onChange={this.handleChange} />
-                    </label>
+                    <input type='text' name='message' placeholder="Aa" value={this.state.message} onChange={this.handleChange} />
                     <input type='submit' value='Send' />
                 </form>
+                <button onClick={this.handleClick}>Leave</button>
             </div>
         } 
         
