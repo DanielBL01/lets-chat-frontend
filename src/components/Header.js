@@ -11,7 +11,7 @@ class Header extends Component {
     };
 
     async componentDidMount() {
-        await axios.get('/header').then(res => {
+        await axios.get('https://lets-chat-server1.herokuapp.com/header').then(res => {
             this.setState({
                 header: res.data
             });

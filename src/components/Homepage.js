@@ -17,7 +17,7 @@ class Homepage extends Component {
         document.title = 'Lets Chat - Homepage'
         document.body.style.backgroundImage = 'linear-gradient(to right, #bdffce, #fcd4f0)'
         try {
-            await axios.get('/listAllLanguages').then(res => {
+            await axios.get('https://lets-chat-server1.herokuapp.com/listAllLanguages').then(res => {
                 this.setState({
                     languages: res.data
                 });
@@ -40,7 +40,7 @@ class Homepage extends Component {
 
         if (this.props.name.length > 0) {
             try {
-                await axios.get('/findOrCreateRoom').then(res => {
+                await axios.get('https://lets-chat-server1.herokuapp.com/findOrCreateRoom').then(res => {
                     console.log(res.data);
                     this.props.setRoom(res.data)
                 });
