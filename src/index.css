@@ -6,6 +6,7 @@ body {
     font-family: 'Raleway', sans-serif;
 }
 
+
 /* Standard 1024px container to use for all pages */
 .container {
     /* Absolute is positioned relative to the nearest positioned ancestor. This means that that it needs a reference to position itself to. Here we use the 
@@ -17,8 +18,6 @@ body {
 	left: 0;
 	right: 0;
 	margin: auto;
-    border-style: solid;
-    border-color: black;
 }
 
 .card {
@@ -31,8 +30,6 @@ body {
     margin-top: 50px;
     margin-left: 50px;
     margin-right: 50px;
-    border-style: solid;
-    border-color: black;
 }
 
 .messages {
@@ -44,6 +41,6 @@ body {
     border-radius: 5px;
     margin-top: 20px;
     margin-bottom: 20px;
-    border-style: solid;
+    border: solid;
     border-color: black;
 }

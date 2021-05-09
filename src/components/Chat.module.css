@@ -54,3 +54,41 @@
     background-color: lightgray;
   }
 }
+
+.message_format {
+  list-style-type: none;
+}
+
+.message_form {
+  margin-bottom: 15px;
+}
+
+.message_enter {
+  font-family: 'Raleway', sans-serif;
+  display: inline-block;
+  width: 85%;
+  border-radius: 10px;
+  border: solid;
+  border-color: lightgray;
+}
+
+.message_submit {
+  font-family: 'Raleway', sans-serif;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  background-color: #258ef7;
+  display: inline-block;
+  width: 13.5%;
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+}
+
+.leave {
+  padding: 5px 10px 5px 10px;
+  background-color: #f23333;
+  border-radius: 10px;
+  font-family: 'Raleway', sans-serif;
+  cursor: pointer;
+  border: none;
+}

@@ -4,8 +4,18 @@
 }
 
 .homepage_form {
-    display: inline-block;
-    position: relative;
+    height: 35px;
+    font-family: 'Raleway', sans-serif;
+    display: block;
+    margin: auto;
     margin-top: 30px;
     width: 50%;
+    box-sizing: border-box;
+}
+
+.submit_button {
+    border-radius: 5px;
+    background-color: #258ef7;
+    border: none;
+    cursor: pointer;
 }

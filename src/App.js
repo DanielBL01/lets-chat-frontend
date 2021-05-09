@@ -39,31 +39,33 @@ class App extends Component {
     let renderPage;
 
     if (this.state.page === 'homepage') {
-      renderPage = <Homepage page='homepage' name={this.state.name} language={this.state.language} setName={this.setName} setPage={this.setPage} setRoom={this.setRoom} setLanguage={this.setLanguage} />;
+      renderPage = 
+        <div className='container'>
+          <div className='card'>
+            <Header />
+          </div>
+          <div className='card'>
+            <Homepage page='homepage' name={this.state.name} language={this.state.language} setName={this.setName} setPage={this.setPage} setRoom={this.setRoom} setLanguage={this.setLanguage} />   
+          </div>
+        </div>
     } else if (this.state.page === 'chat') {
       console.log(this.state);
-      renderPage = <Chat page='chat' name={this.state.name} language={this.state.language} room={this.state.room} setName={this.setName} setPage={this.setPage} setRoom={this.setRoom} setLanguage={this.setLanguage} />;
+      renderPage = 
+        <div className='container'>
+          <div className='card'>
+            <Header />
+          </div>
+          <div className='card'>
+            <Chat page='chat' name={this.state.name} language={this.state.language} room={this.state.room} setName={this.setName} setPage={this.setPage} setRoom={this.setRoom} setLanguage={this.setLanguage} />          </div>
+        </div>
     }
 
     return (
-      <div className='container'>
-        <div className='card'>
-          <Header />
-        </div>
-        <div className='card'>
-          {renderPage}          
-        </div>
+      <div>
+        {renderPage}
       </div>
     )
   }
 }
 
 export default App;
-
-/*
-
-There are two main pages for this application. A page where a user enters a username and chooses a language of preference
-and a chat room page where two users chat using different languages
-
-This App component shall handle whether we render the homepage or chat page, store the room, and the username and language
-*/

@@ -22,6 +22,7 @@ class Chat extends Component {
 
     componentDidMount() {
         document.title = 'Lets Chat - Chat Room'
+        document.body.style.backgroundImage = ''
         this.connectSocket(this.props.room);
     }
 
@@ -93,7 +94,7 @@ class Chat extends Component {
     handleSubmit(event) {
         event.preventDefault();
         socket.emit('messages', {
-            message: this.state.message,
+            message: '(' + this.props.name + ') ' + this.state.message,
             language: this.state.partnerLanguage
         });
 
@@ -106,9 +107,14 @@ class Chat extends Component {
         let renderPage;
 
         if (this.state.status === 'matching') {
-            renderPage = <div className={style.searching}>
-                <div>Searching for a Partner</div>
-                <div className={style.dot_flashing} />
+            renderPage = <div>
+                <div className={style.searching}>
+                    <div>Searching for a Partner</div>
+                    <div className={style.dot_flashing} />
+                </div>
+                <div>
+                    <button className={style.leave} onClick={this.handleClick}>Leave</button>
+                </div> 
             </div>
         } 
         
@@ -118,20 +124,18 @@ class Chat extends Component {
             );
 
             renderPage = <div>
-                <h1>Welcome, and thanks for joining the Chat room!</h1>
-                <h2>You are talking to {this.state.partnerName} who speaks {this.state.partnerLanguage}</h2>
-                <h2>You speak {this.props.language}</h2>
+                <h3>You have been matched with {this.state.partnerName} who speaks {this.state.partnerLanguage}. You have declared that you speak {this.props.language}.</h3>
                 <div className='messages'>
-                    <ul>    
+                    <ul className={style.message_format}>    
                         {displayMessages}
                     </ul>
                 </div>
 
-                <form onSubmit={this.handleSubmit}>
-                    <input type='text' name='message' placeholder="Aa" value={this.state.message} onChange={this.handleChange} />
-                    <input type='submit' value='Send' />
+                <form className={style.message_form} onSubmit={this.handleSubmit}>
+                    <input className={style.message_enter} type='text' name='message' placeholder="Aa" value={this.state.message} onChange={this.handleChange} />
+                    <input className={style.message_submit} type='submit' value='Send' />
                 </form>
-                <button onClick={this.handleClick}>Leave</button>
+                <button className={style.leave} onClick={this.handleClick}>Leave</button>
             </div>
         } 
         
