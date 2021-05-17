@@ -57,7 +57,7 @@ class Homepage extends Component {
     render() {
         return (
             <div className={style.homepage}>
-                Seeminglessly chat with people speaking different languages
+                Seamlessly chat with people speaking different languages
                 <form onSubmit={this.handleSubmit}>
                     <select className={style.homepage_form} name='language' value={this.props.language} onChange={this.handleChange}>
                         {this.state.languages.map((language, i) => {
